@@ -5,7 +5,11 @@ package types_pkg;
         ALU_SUB,
         ALU_AND,
         ALU_OR,
-        ALU_XOR
+        ALU_XOR,
+        ALU_SLL,
+        ALU_SRL,
+        ALU_SRA,
+        ALU_COPY_B
     } alu_op_e;
 
     // control signals derived from instruction decode
