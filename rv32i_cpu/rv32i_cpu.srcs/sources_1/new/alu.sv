@@ -19,7 +19,7 @@ module alu(
             ALU_SRL: y = a >> b[4:0];
             ALU_SRA: y = $signed(a) >>> b[4:0]; 
             ALU_COPY_B: y = b;
-            default: y = 32'hDEAD_CODE;
+            default: y = 32'hDEAD_BEEF;
         endcase
     end
 
