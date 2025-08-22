@@ -18,13 +18,23 @@ module regfile(
             register[waddr] <= wdata;
     end
     
-    // combinational read
-    assign rdata1 = (raddr1 == 0)? register[raddr1]:0;
-    assign rdata2 = (raddr2 == 0)? register[raddr2]:0;
-    assign register[0] = '0;
+    // combinational read with raw bypass
+    always_comb begin
+        if (raddr1 == 0)
+            rdata1 = 0;
+        else if (we && (raddr1 == waddr) && (waddr != 0))
+            rdata1 = wdata;
+        else 
+            rdata1 = register[raddr1];
+    end
     
-    // same cycle raw bypass
-    
-    // read during write bypass if needed
+    always_comb begin
+        if (raddr2 == 0)
+            rdata2 = 0;
+        else if (we && (raddr2 == waddr) && (waddr != 0))
+            rdata1 = wdata;
+        else 
+            rdata1 = register[raddr2];
+    end
     
 endmodule
