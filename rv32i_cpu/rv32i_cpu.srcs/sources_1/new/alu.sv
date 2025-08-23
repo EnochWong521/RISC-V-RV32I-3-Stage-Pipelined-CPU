@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 import types_pkg::*;
 
 // alu ports
