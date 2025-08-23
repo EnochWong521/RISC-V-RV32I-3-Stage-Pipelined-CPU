@@ -11,6 +11,7 @@ module alu(
     // alu logic 
     always_comb begin
         unique case (op)
+            ALU_ADD: y = a + b;
             ALU_SUB: y = a - b;
             ALU_AND: y = a & b;
             ALU_OR: y = a | b;
