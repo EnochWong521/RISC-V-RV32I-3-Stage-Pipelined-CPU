@@ -15,9 +15,9 @@ package types_pkg;
 
     // control signals derived from instruction decode
     typedef struct packed {
-        logic use_imm;
-        logic alu_op;
-        logic reg_write;
+        logic use_imm; // use immediate bits?
+        alu_op_e alu_op; // op code to determine instruction type
+        logic reg_write; // write back enable
     } ctrl_t;
 
 endpackage
