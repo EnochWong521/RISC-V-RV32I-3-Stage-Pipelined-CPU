@@ -5,7 +5,7 @@ module imm_gen(
     output [31:0] imm_i, // I-type instruction
     output [31:0] imm_b // B-type  instruction
 );
-    // extract raw fields from instruction
+    // extract immediate bits from instruction
     // I-type
     logic [11:0] i_imm;
     assign i_imm = inst [31:20];

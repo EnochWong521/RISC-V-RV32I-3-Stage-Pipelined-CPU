@@ -3,7 +3,7 @@
 import types_pkg::*;
 
 // alu ports
-// no flags in risc architecture
+// no flags in risc-v architecture
 module alu(
     input  logic [31:0] a, b,
     input  alu_op_e op,

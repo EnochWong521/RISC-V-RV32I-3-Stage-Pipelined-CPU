@@ -12,7 +12,7 @@ module alu_tb;
         .y(y)
     );
     
-    task run(input alu_op_e op_code, input [31:0] a_in, b_in, string op_name);
+    task automatic run(input alu_op_e op_code, input [31:0] a_in, b_in, string op_name);
         a = a_in;
         b = b_in;
         op = op_code;

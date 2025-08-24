@@ -11,7 +11,7 @@ module imm_gen_tb;
         .imm_b(imm_b)
     );
     
-    task show(string name, logic [31:0] val);
+    task automatic show(string name, logic [31:0] val);
         $display("%s = 0x%08h (signed %0d)", name, val, $signed(val));
     endtask
     

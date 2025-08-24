@@ -32,9 +32,9 @@ module regfile(
         if (raddr2 == 0)
             rdata2 = 0;
         else if (we && (raddr2 == waddr) && (waddr != 0))
-            rdata1 = wdata;
+            rdata2 = wdata;
         else 
-            rdata1 = register[raddr2];
+            rdata2 = register[raddr2];
     end
     
 endmodule

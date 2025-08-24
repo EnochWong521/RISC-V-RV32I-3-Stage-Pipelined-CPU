@@ -1,4 +1,4 @@
-// rtl/types_pkg.sv
+// header file
 package types_pkg;
     // ALU operations
     typedef enum logic [3:0] {
