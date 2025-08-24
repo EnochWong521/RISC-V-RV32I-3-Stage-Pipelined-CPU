@@ -1,0 +1,7 @@
+Time resolution is 1 ps
+Write Address: 0x00, Write Data: 0x00000000
+Read Address 1: 0x01, Read Data 1: 0x00000000, Read Address 2: 0x00, Read Data 2: 0x00000000
+ERROR. Observed: 0x00000000, Expected: 0x00000042
+Write Address: 0x00, Write Data: 0x00000000
+Read Address 1: 0x00, Read Data 1: 0xxxxxxxxx, Read Address 2: 0x00, Read Data 2: 0x00000000
+ERROR. Observed: 0xxxxxxxxx, Expected: 0x00000000
