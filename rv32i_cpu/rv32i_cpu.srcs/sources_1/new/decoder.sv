@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-import types_pkg::*
+import types_pkg::*;
 
 module decoder(
     input [31:0] inst,
@@ -12,9 +12,13 @@ module decoder(
     );
     
     // extract partially common fields
-    logic [6:0] op_code = inst[6:0];
-    logic [2:0] funct3 = inst[14:12];
-    logic [6:0] funct7 = inst[31:25];
+    logic [6:0] opcode;
+    logic [2:0] funct3;
+    logic [6:0] funct7;
+    
+    assign opcode = inst[6:0];
+    assign funct3 = inst[14:12];
+    assign funct7 = inst[31:25];
     
     // extract universally common field for B, I, R type instructions
     assign rd = inst[11:7];
@@ -33,10 +37,10 @@ module decoder(
     always_comb begin
         // default values
         reg_write = 0;
-        alu_op = 0;
+        alu_op = ALU_ADD;
         use_imm = 0;
         is_branch = 0;
-        unique case (op_code)
+        unique case (opcode)
             // R-type
             OP: begin
                 reg_write = 1'b1;
@@ -47,6 +51,7 @@ module decoder(
                     3'b100: alu_op = ALU_XOR;
                     3'b001: alu_op = ALU_SLL;
                     3'b101: alu_op = (funct7 == 7'h20)? ALU_SRA: ALU_SRL;  
+                endcase
             end
             // I-type
             OP_IMM: begin
@@ -55,8 +60,9 @@ module decoder(
             end
             // B-type
             BRANCH: begin
-                is_branch = 1'b1
+                is_branch = 1'b1;
             end 
+            default:;
         endcase
     end
     
