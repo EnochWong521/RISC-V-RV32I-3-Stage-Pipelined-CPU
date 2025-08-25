@@ -33,8 +33,6 @@ module core_top(
     logic [31:0] pc_plus4;
     assign pc_plus4 = pc_q + 32'd4;
     
-    //assign pc_n = pc_plus4;
-    
     // IF pipeline register. IF side of IF/EX reg
     always_ff @(posedge clk or negedge reset_n) begin
         if (!reset_n) begin
@@ -43,7 +41,8 @@ module core_top(
         end
         else begin
             pc_q <= pc_n;
-            if_inst <= inst_f;
+            // squash instruction if branch is taken
+            if_inst <= branch_taken? NOP : inst_f;
         end
     end
     
@@ -95,7 +94,7 @@ module core_top(
     // register file
     regfile u_regfile(
         .clk(clk),
-        .wb(wb_we),
+        .we(wb_we),
         .waddr(wb_rd),
         .wdata(wb_result),
         .raddr1(ex_rs1),
@@ -111,8 +110,8 @@ module core_top(
     // 2. WB stage register destination is not x0
     // 3. WB stage register destination conflicts with the rs1 or rs2 EX stage is trying to access
     logic fwd_rs1_en, fwd_rs2_en;
-    assign fwd_rs1_en = wb_we && (wb_rd !== 5'd0) && (wb_rd == ex_rs1);
-    assign fwd_rs2_en = wb_we && (wb_rd !== 5'd0) && (wb_rd == ex_rs2); 
+    assign fwd_rs1_en = wb_we && (wb_rd != 5'd0) && (wb_rd == ex_rs1);
+    assign fwd_rs2_en = wb_we && (wb_rd != 5'd0) && (wb_rd == ex_rs2); 
     // forward wb result if enabled 
     assign fwd_rs1 = fwd_rs1_en? wb_result : rs1_value;
     assign fwd_rs2 = fwd_rs2_en? wb_result : rs2_value;
@@ -123,10 +122,10 @@ module core_top(
     assign alu_b = ex_ctrl.use_imm? imm_i : fwd_rs2;
     
     alu u_alu (
-        .a(a),
-        .b(b),
+        .a(alu_a),
+        .b(alu_b),
         .op(ex_ctrl.alu_op),
-        .y(alu.y)
+        .y(alu_y)
     );
     
     // writeback
@@ -143,11 +142,5 @@ module core_top(
     
     // determine if branch is taken 
     assign pc_n = branch_taken? branch_target : pc_plus4;
-    
-    // when branch is taken, squash IF instruction. one cycle penalty
-    always_ff @(posedge clk or negedge reset_n) begin
-        // skip reset boolean statement since it is already handled above
-        if (branch_taken)
-            if_inst = NOP; 
-    end
+    // squash branch logic in IF sequential block above
 endmodule

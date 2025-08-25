@@ -1,8 +1,12 @@
 # compile verilog/system verilog design source files
 sv xil_defaultlib  \
 "../../../../rv32i_cpu.srcs/sources_1/new/types_pkg.sv" \
+"../../../../rv32i_cpu.srcs/sources_1/new/alu.sv" \
+"../../../../rv32i_cpu.srcs/sources_1/new/core_top.sv" \
 "../../../../rv32i_cpu.srcs/sources_1/new/decoder.sv" \
-"../../../../rv32i_cpu.srcs/sim_1/new/decoder_tb.sv" \
+"../../../../rv32i_cpu.srcs/sources_1/new/imm_gen.sv" \
+"../../../../rv32i_cpu.srcs/sources_1/new/regfile.sv" \
+"../../../../rv32i_cpu.srcs/sim_1/new/core_top_tb.sv" \
 
 # compile glbl module
 verilog xil_defaultlib "glbl.v"
