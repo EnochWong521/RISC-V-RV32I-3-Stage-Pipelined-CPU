@@ -18,6 +18,10 @@ package types_pkg;
         logic use_imm; // use immediate bits?
         alu_op_e alu_op; // op code to determine instruction type
         logic reg_write; // write back enable
+        logic is_branch; // B-type instruction? 
     } ctrl_t;
+    
+    // NOP = ADDI x0, x0, 0 = 32'h00000013
+    localparam logic [31:0] NOP = 32'h00000013;
 
 endpackage

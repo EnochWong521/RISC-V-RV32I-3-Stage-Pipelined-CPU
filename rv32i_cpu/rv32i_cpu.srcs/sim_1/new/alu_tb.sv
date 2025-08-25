@@ -5,7 +5,7 @@ module alu_tb;
     alu_op_e op;
     logic [31:0] y;
     
-    alu DUT(
+    alu dut(
         .a(a),
         .b(b),
         .op(op),

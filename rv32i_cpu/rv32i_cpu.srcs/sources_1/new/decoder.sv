@@ -4,10 +4,7 @@ import types_pkg::*;
 
 module decoder(
     input [31:0] inst,
-    output alu_op_e alu_op,
-    output logic use_imm,
-    output logic reg_write,
-    output logic is_branch,
+    output ctrl_t ctrl,
     output logic [4:0] rs1, rs2, rd
     );
     
@@ -36,31 +33,31 @@ module decoder(
     // operation processing
     always_comb begin
         // default values
-        reg_write = 0;
-        alu_op = ALU_ADD;
-        use_imm = 0;
-        is_branch = 0;
+        ctrl.reg_write = 0;
+        ctrl.alu_op = ALU_ADD;
+        ctrl.use_imm = 0;
+        ctrl.is_branch = 0;
         unique case (opcode)
             // R-type
             OP: begin
-                reg_write = 1'b1;
+                ctrl.reg_write = 1'b1;
                 unique case (funct3)
-                    3'b000: alu_op = (funct7 == 7'h20)? ALU_SUB:ALU_ADD;
-                    3'b111: alu_op = ALU_AND;
-                    3'b110: alu_op = ALU_OR;
-                    3'b100: alu_op = ALU_XOR;
-                    3'b001: alu_op = ALU_SLL;
-                    3'b101: alu_op = (funct7 == 7'h20)? ALU_SRA: ALU_SRL;  
+                    3'b000: ctrl.alu_op = (funct7 == 7'h20)? ALU_SUB:ALU_ADD;
+                    3'b111: ctrl.alu_op = ALU_AND;
+                    3'b110: ctrl.alu_op = ALU_OR;
+                    3'b100: ctrl.alu_op = ALU_XOR;
+                    3'b001: ctrl.alu_op = ALU_SLL;
+                    3'b101: ctrl.alu_op = (funct7 == 7'h20)? ALU_SRA: ALU_SRL;  
                 endcase
             end
             // I-type
             OP_IMM: begin
-                use_imm = 1'b1;
-                reg_write = 1'b1;
+                ctrl.use_imm = 1'b1;
+                ctrl.reg_write = 1'b1;
             end
             // B-type
             BRANCH: begin
-                is_branch = 1'b1;
+                ctrl.is_branch = 1'b1;
             end 
             default:;
         endcase

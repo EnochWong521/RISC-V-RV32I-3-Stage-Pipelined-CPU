@@ -5,7 +5,7 @@ module imm_gen_tb;
     logic [31:0] imm_i;
     logic [31:0] imm_b;
     
-    imm_gen DUT (
+    imm_gen dut (
         .inst(inst),
         .imm_i(imm_i),
         .imm_b(imm_b)
