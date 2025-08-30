@@ -33,7 +33,7 @@
 Thumbs.db
 
 # original project tool outputs 
-/rv32i/rv32i_cpu.sim/
-/rv32i/rv32i_cpu.hw/
-/rv32i/rv32i_cpu.cache/
-/rv32i/rv32i_cpu.runs/
+/rv32i_cpu/rv32i_cpu.sim/
+/rv32i_cpu/rv32i_cpu.hw/
+/rv32i_cpu/rv32i_cpu.cache/
+/rv32i_cpu/rv32i_cpu.runs/
