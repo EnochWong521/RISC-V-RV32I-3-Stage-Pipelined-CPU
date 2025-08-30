@@ -1,0 +1,33 @@
+﻿# Vivado generated stuff (ignore these)
+*.jou
+*.log
+*.str
+*.zip
+*.html
+*.xml
+*.xpr
+*.rpx
+*.dcp
+*.ltx
+*.pb
+*.wdb
+*.sdk
+*.hw
+
+.ip_user_files/
+.sim/
+.cache/
+.Xil/
+.runs/
+.srcs/
+.gen/
+.ipguard/
+.hw/
+.ipdefs/
+
+# Generic build dir
+/build/
+
+# OS junk
+**/.DS_Store
+Thumbs.db
