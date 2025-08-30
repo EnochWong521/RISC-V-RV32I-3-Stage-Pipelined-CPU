@@ -1,7 +1,0 @@
-Time resolution is 1 ps
-Register address: 1, register value: 0x00000005
-Register address: 2, register value: 0x00000007
-Register address: 3, register value: 0x0000000c
-Register address: 4, register value: 0x00000001
-Testbench passed
-$finish called at time : 15 ns : File "C:/Users/Enoch/Git/RISC-V-RV32I-5-Stage-Pipelined-CPU/rv32i_cpu/rv32i_cpu.srcs/sim_1/new/core_top_tb.sv" Line 55
