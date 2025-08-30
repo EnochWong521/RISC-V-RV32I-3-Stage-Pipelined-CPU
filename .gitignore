@@ -31,3 +31,10 @@
 # OS junk
 **/.DS_Store
 Thumbs.db
+
+# original project tool outputs 
+/rv32i/.Xil/
+/rv32i/.runs/
+/rv32i/.cache/
+/rv32i/sim/
+/rv32i/hw/
