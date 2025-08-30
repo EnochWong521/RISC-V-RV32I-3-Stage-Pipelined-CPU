@@ -32,8 +32,13 @@
 **/.DS_Store
 Thumbs.db
 
-# original project tool outputs 
-/rv32i_cpu/rv32i_cpu.sim/
-/rv32i_cpu/rv32i_cpu.hw/
-/rv32i_cpu/rv32i_cpu.cache/
-/rv32i_cpu/rv32i_cpu.runs/
+# original project tool outputs
+rv32i_cpu.cache/**
+rv32i_cpu.hw/**
+rv32i_cpu.ip_user_files/**
+rv32i_cpu.sim/**
+rv32i_cpu.srcs/**
+
+# keep only HDL files
+!rv32i_cpu.srcs/sources_1/new/**
+!rv32i_cpu.srcs/sim_1/new/**
